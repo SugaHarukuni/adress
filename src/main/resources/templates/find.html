@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>edit page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style >
+	h1{ font-size:18pt; font-weight:bold; color:gray;}
+	body{font-size:13pt; color:gray; margin:5px 25px;}
+
+	tr {margin:5px;}
+	th{padding:5px; color:white; background:darkgray;}
+	td{padding:5px; color:black; background:#f0f0f0;}
+	</style>
+</head>
+
+<body>
+	<h1 th:text="${title}">search page</h1>
+	<h1 th:if="${resultHit}">対象の項目は見つかりません</h1>
+	<table>
+	<tr><th>ID</th><th>名前</th><th>メール</th><th>住所</th><th></th><th></th></tr>
+	<tr th:each="obj : ${formModel}">
+	 <td th:text="${obj.id}"></td>
+	 <td th:text="${obj.name}"></td>
+	 <td th:text="${obj.mail}"></td>
+	 <td th:text="${obj.adress}"></td>
+	 <td><a th:href="@{/edit/{id}(id=${obj.id})}">編集</a></td>
+	 <td><a th:href="@{/delete/{id}(id=${obj.id})}">削除</a></td>	 
+	 </tr>
+	 </table>
+	 <a href="/">TOPページへ</a>
+</body>
+</html>
